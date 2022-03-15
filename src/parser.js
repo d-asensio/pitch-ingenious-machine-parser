@@ -1,6 +1,6 @@
 const R = require('ramda')
 
-const { ENTRY_LINE_LENGTH, GLYPH_SIZE, GLYPHS_PER_ENTRY } = require('./constants')
+const defaultOptions = require('./defaultOptions')
 
 const {
   DIGIT_ZERO_GLYPH,
@@ -28,38 +28,43 @@ const GLYPH_TO_DIGIT_MAP = {
   [DIGIT_NINE_GLYPH]: 9
 }
 
-const parseEntry = entry => {
-  const getGlyphAtPosition = R.partial(getGlyphAtEntryPosition, [entry])
+function createEntryParser (entry, options = defaultOptions) {
+  const { GLYPH_SIZE, GLYPHS_PER_ENTRY } = options
+
+  const ENTRY_LINE_LENGTH = GLYPH_SIZE * GLYPHS_PER_ENTRY
+
+  const getGlyphAtPosition = position => {
+    const line1 = entry.slice(0                    , ENTRY_LINE_LENGTH)
+    const line2 = entry.slice(ENTRY_LINE_LENGTH    , ENTRY_LINE_LENGTH * 2)
+    const line3 = entry.slice(ENTRY_LINE_LENGTH * 2, ENTRY_LINE_LENGTH * 3)
+  
+    const offset = position * GLYPH_SIZE
+  
+    return (
+      line1.slice(offset, offset + GLYPH_SIZE) +
+      line2.slice(offset, offset + GLYPH_SIZE) +
+      line3.slice(offset, offset + GLYPH_SIZE)
+    )
+  }
+  
+  const parseDigitGlyph = glyph => {
+    return GLYPH_TO_DIGIT_MAP[glyph] ?? null
+  }
+
   const parseGlyphAtPosition = R.pipe(
     getGlyphAtPosition,
     parseDigitGlyph
   )
 
-  return R
+  const parse = () => R
     .range(0, GLYPHS_PER_ENTRY)
     .map(parseGlyphAtPosition)
-}
 
-const getGlyphAtEntryPosition = (entry, position) => {
-  const line1 = entry.slice(0                    , ENTRY_LINE_LENGTH)
-  const line2 = entry.slice(ENTRY_LINE_LENGTH    , ENTRY_LINE_LENGTH * 2)
-  const line3 = entry.slice(ENTRY_LINE_LENGTH * 2, ENTRY_LINE_LENGTH * 3)
-
-  const offset = position * GLYPH_SIZE
-
-  return (
-    line1.slice(offset, offset + GLYPH_SIZE) +
-    line2.slice(offset, offset + GLYPH_SIZE) +
-    line3.slice(offset, offset + GLYPH_SIZE)
-  )
-}
-
-const parseDigitGlyph = glyph => {
-  return GLYPH_TO_DIGIT_MAP[glyph] ?? null
+  return {
+    parse,
+  }
 }
 
 module.exports = {
-  parseEntry,
-  getGlyphAtEntryPosition,
-  parseDigitGlyph
+  createEntryParser
 }

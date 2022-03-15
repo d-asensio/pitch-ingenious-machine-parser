@@ -1,92 +1,95 @@
-const { parseEntry, parseDigitGlyph, getGlyphAtEntryPosition } = require('./parser')
+const { createEntryParser } = require('./parser')
 
-const {
-  DIGIT_ZERO_GLYPH,
-  DIGIT_ONE_GLYPH,
-  DIGIT_TWO_GLYPH,
-  DIGIT_THREE_GLYPH,
-  DIGIT_FOUR_GLYPH,
-  DIGIT_FIVE_GLYPH,
-  DIGIT_SIX_GLYPH,
-  DIGIT_SEVEN_GLYPH,
-  DIGIT_EIGHT_GLYPH,
-  DIGIT_NINE_GLYPH
-} = require('./glyps')
-
-describe('parseDigitGlyph', () => {
-  it.each([
-    [0, DIGIT_ZERO_GLYPH],
-    [1, DIGIT_ONE_GLYPH],
-    [2, DIGIT_TWO_GLYPH],
-    [3, DIGIT_THREE_GLYPH],
-    [4, DIGIT_FOUR_GLYPH],
-    [5, DIGIT_FIVE_GLYPH],
-    [6, DIGIT_SIX_GLYPH],
-    [7, DIGIT_SEVEN_GLYPH],
-    [8, DIGIT_EIGHT_GLYPH],
-    [9, DIGIT_NINE_GLYPH],
-  ])('should parse the glyph representing the digit "%s"', (digit, glyph) => {
-    expect(
-      parseDigitGlyph(glyph)
-    ).toBe(digit)
-  })
-
-  it('should return "null" in case the glyph does not represent any known digit', () => {
-    const unknownDigitGlyph =
-      ' _ ' +
-      '  |' +
-      ' _|'
-
-      expect(
-        parseDigitGlyph(unknownDigitGlyph)
-      ).toBe(null)
-  })
-})
-
-describe('getGlyphAtPosition', () => {
-  const ENTRY_SAMPLE =
+it.each([
+  [
+    'all zeros',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    '| || || || || || || || || |' +
+    '|_||_||_||_||_||_||_||_||_|',
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ],
+  [
+    'all ones',
+    '                           ' +
+    '  |  |  |  |  |  |  |  |  |' +
+    '  |  |  |  |  |  |  |  |  |',
+    [1, 1, 1, 1, 1, 1, 1, 1, 1]
+  ],
+  [
+    'all twos',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    ' _| _| _| _| _| _| _| _| _|' +
+    '|_ |_ |_ |_ |_ |_ |_ |_ |_ ',
+    [2, 2, 2, 2, 2, 2, 2, 2, 2]
+  ],
+  [
+    'all threes',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    ' _| _| _| _| _| _| _| _| _|' +
+    ' _| _| _| _| _| _| _| _| _|',
+    [3, 3, 3, 3, 3, 3, 3, 3, 3]
+  ],
+  [
+    'all fours',
+    '                           ' +
+    '|_||_||_||_||_||_||_||_||_|' +
+    '  |  |  |  |  |  |  |  |  |',
+    [4, 4, 4, 4, 4, 4, 4, 4, 4]
+  ],
+  [
+    'all fives',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    '|_ |_ |_ |_ |_ |_ |_ |_ |_ ' +
+    '|_||_||_||_||_||_||_||_||_|',
+    [6, 6, 6, 6, 6, 6, 6, 6, 6]
+  ],
+  [
+    'all sixs',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    '|_ |_ |_ |_ |_ |_ |_ |_ |_ ' +
+    ' _| _| _| _| _| _| _| _| _|',
+    [5, 5, 5, 5, 5, 5, 5, 5, 5]
+  ],
+  [
+    'all sevens',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    '  |  |  |  |  |  |  |  |  |' +
+    '  |  |  |  |  |  |  |  |  |',
+    [7, 7, 7, 7, 7, 7, 7, 7, 7]
+  ],
+  [
+    'all eights',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    '|_||_||_||_||_||_||_||_||_|' +
+    '|_||_||_||_||_||_||_||_||_|',
+    [8, 8, 8, 8, 8, 8, 8, 8, 8]
+  ],
+  [
+    'all nines',
+    ' _  _  _  _  _  _  _  _  _ ' +
+    '|_||_||_||_||_||_||_||_||_|' +
+    ' _| _| _| _| _| _| _| _| _|',
+    [9, 9, 9, 9, 9, 9, 9, 9, 9]
+  ],
+  [
+    'digits from 1 to 9',
     '    _  _     _  _  _  _  _ ' +
     '  | _| _||_||_ |_   ||_||_|' +
+    '  ||_  _|  | _||_|  ||_| _|',
+    [1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9]
+  ]
+])('should read an entry containing %s', (_, entry, expectedDigits) => {
+  const { parse } = createEntryParser(entry)
+
+  expect(parse()).toStrictEqual(expectedDigits)
+})
+
+it('should read entry invalid digits as "null"', () => {
+  const { parse } = createEntryParser(
+    '    _  _     _  _  _  _  _ ' +
+    '  | _|  ||_||_ |_   ||_||_|' +
     '  ||_  _|  | _||_|  ||_| _|'
+  )
 
-  it.each([
-    [0, DIGIT_ONE_GLYPH],
-    [1, DIGIT_TWO_GLYPH],
-    [2, DIGIT_THREE_GLYPH],
-    [3, DIGIT_FOUR_GLYPH],
-    [4, DIGIT_FIVE_GLYPH],
-    [5, DIGIT_SIX_GLYPH],
-    [6, DIGIT_SEVEN_GLYPH],
-    [7, DIGIT_EIGHT_GLYPH],
-    [8, DIGIT_NINE_GLYPH]
-  ])('should get the glyph at position "%s" of an entry', (position, expectedGlyph) => {
-    expect(
-      getGlyphAtEntryPosition(ENTRY_SAMPLE, position)
-    ).toBe(expectedGlyph)
-  })
+  expect(parse()).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
 })
-
-describe('parseEntry', () => {
-  it('should get the digits represented by a valid entry', () => {
-    const validEntry =
-      '    _  _     _  _  _  _  _ ' +
-      '  | _| _||_||_ |_   ||_||_|' +
-      '  ||_  _|  | _||_|  ||_| _|'
-
-    expect(
-      parseEntry(validEntry)
-    ).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
-  })
-
-  it('should represent invalid entries as "null"', () => {
-    const validEntry =
-      '    _  _     _  _  _  _  _ ' +
-      '  | _|  ||_||_ |_   ||_||_|' +
-      '  ||_  _|  | _||_|  ||_| _|'
-
-    expect(
-      parseEntry(validEntry)
-    ).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
-  })
-})
-
