@@ -1,0 +1,33 @@
+const {
+  DIGIT_ZERO_GLYPH,
+  DIGIT_ONE_GLYPH,
+  DIGIT_TWO_GLYPH,
+  DIGIT_THREE_GLYPH,
+  DIGIT_FOUR_GLYPH,
+  DIGIT_FIVE_GLYPH,
+  DIGIT_SIX_GLYPH,
+  DIGIT_SEVEN_GLYPH,
+  DIGIT_EIGHT_GLYPH,
+  DIGIT_NINE_GLYPH
+} = require('./constants')
+
+const GLYPH_TO_DIGIT_MAP = {
+  [DIGIT_ZERO_GLYPH]: 0,
+  [DIGIT_ONE_GLYPH]: 1,
+  [DIGIT_TWO_GLYPH]: 2,
+  [DIGIT_THREE_GLYPH]: 3,
+  [DIGIT_FOUR_GLYPH]: 4,
+  [DIGIT_FIVE_GLYPH]: 5,
+  [DIGIT_SIX_GLYPH]: 6,
+  [DIGIT_SEVEN_GLYPH]: 7,
+  [DIGIT_EIGHT_GLYPH]: 8,
+  [DIGIT_NINE_GLYPH]: 9
+}
+
+const parseDigitGlyph = glyph => {
+  return GLYPH_TO_DIGIT_MAP[glyph]
+}
+
+module.exports = {
+  parseDigitGlyph
+}

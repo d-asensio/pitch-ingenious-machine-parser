@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "jest --verbose",
-    "test:watch": "jest -w"
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "jest": "^27.5.1"
