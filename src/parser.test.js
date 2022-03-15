@@ -1,4 +1,4 @@
-const { parseDigitGlyph, getGlyphAtEntryPosition } = require('./parser')
+const { parseEntry, parseDigitGlyph, getGlyphAtEntryPosition } = require('./parser')
 
 const {
   DIGIT_ZERO_GLYPH,
@@ -65,3 +65,28 @@ describe('getGlyphAtPosition', () => {
     ).toBe(expectedGlyph)
   })
 })
+
+describe('parseEntry', () => {
+  it('should get the digits represented by a valid entry', () => {
+    const validEntry =
+      '    _  _     _  _  _  _  _ ' +
+      '  | _| _||_||_ |_   ||_||_|' +
+      '  ||_  _|  | _||_|  ||_| _|'
+
+    expect(
+      parseEntry(validEntry)
+    ).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9])
+  })
+
+  it('should represent invalid entries as "null"', () => {
+    const validEntry =
+      '    _  _     _  _  _  _  _ ' +
+      '  | _|  ||_||_ |_   ||_||_|' +
+      '  ||_  _|  | _||_|  ||_| _|'
+
+    expect(
+      parseEntry(validEntry)
+    ).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
+  })
+})
+

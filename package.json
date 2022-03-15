@@ -13,5 +13,8 @@
   },
   "devDependencies": {
     "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "ramda": "^0.28.0"
   }
 }

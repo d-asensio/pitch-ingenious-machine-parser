@@ -1,4 +1,6 @@
-const { ENTRY_LINE_LENGTH, GLYPH_SIZE } = require('./constants')
+const R = require('ramda')
+
+const { ENTRY_LINE_LENGTH, GLYPH_SIZE, GLYPHS_PER_ENTRY } = require('./constants')
 
 const {
   DIGIT_ZERO_GLYPH,
@@ -26,6 +28,18 @@ const GLYPH_TO_DIGIT_MAP = {
   [DIGIT_NINE_GLYPH]: 9
 }
 
+const parseEntry = entry => {
+  const getGlyphAtPosition = R.partial(getGlyphAtEntryPosition, [entry])
+  const parseGlyphAtPosition = R.pipe(
+    getGlyphAtPosition,
+    parseDigitGlyph
+  )
+
+  return R
+    .range(0, GLYPHS_PER_ENTRY)
+    .map(parseGlyphAtPosition)
+}
+
 const getGlyphAtEntryPosition = (entry, position) => {
   const line1 = entry.slice(0                    , ENTRY_LINE_LENGTH)
   const line2 = entry.slice(ENTRY_LINE_LENGTH    , ENTRY_LINE_LENGTH * 2)
@@ -45,6 +59,7 @@ const parseDigitGlyph = glyph => {
 }
 
 module.exports = {
-  parseDigitGlyph,
-  getGlyphAtEntryPosition
+  parseEntry,
+  getGlyphAtEntryPosition,
+  parseDigitGlyph
 }
