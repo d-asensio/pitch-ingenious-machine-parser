@@ -1,0 +1,17 @@
+{
+  "name": "pitch-tech-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Anonimous Pitch Candidate",
+  "license": "MIT",
+  "volta": {
+    "node": "16.5.0"
+  },
+  "scripts": {
+    "test": "jest --verbose",
+    "test:watch": "jest -w"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
