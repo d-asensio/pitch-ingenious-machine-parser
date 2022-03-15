@@ -30,4 +30,15 @@ describe('parseDigitGlyph', () => {
       parseDigitGlyph(glyph)
     ).toBe(digit)
   })
+
+  it('should return "null" in case the glyph does not represent any known digit', () => {
+    const unknownDigitGlyph =
+      ' _ ' +
+      '  |' +
+      ' _|'
+
+      expect(
+        parseDigitGlyph(unknownDigitGlyph)
+      ).toBe(null)
+  })
 })

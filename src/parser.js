@@ -25,7 +25,7 @@ const GLYPH_TO_DIGIT_MAP = {
 }
 
 const parseDigitGlyph = glyph => {
-  return GLYPH_TO_DIGIT_MAP[glyph]
+  return GLYPH_TO_DIGIT_MAP[glyph] ?? null
 }
 
 module.exports = {
