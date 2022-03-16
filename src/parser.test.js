@@ -79,17 +79,17 @@ it.each([
     [1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9]
   ]
 ])('should read an entry containing %s', (_, entry, expectedDigits) => {
-  const { parse } = createEntryParser(entry)
+  const { parse } = createEntryParser()
 
-  expect(parse()).toStrictEqual(expectedDigits)
+  expect(parse(entry)).toStrictEqual(expectedDigits)
 })
 
 it('should read entry invalid digits as "null"', () => {
-  const { parse } = createEntryParser(
+  const { parse } = createEntryParser()
+  const entry =
     '    _  _     _  _  _  _  _ ' +
     '  | _|  ||_||_ |_   ||_||_|' +
     '  ||_  _|  | _||_|  ||_| _|'
-  )
 
-  expect(parse()).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
+  expect(parse(entry)).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
 })

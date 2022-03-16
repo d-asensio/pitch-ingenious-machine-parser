@@ -28,12 +28,12 @@ const GLYPH_TO_DIGIT_MAP = {
   [DIGIT_NINE_GLYPH]: 9
 }
 
-function createEntryParser (entry, options = defaultOptions) {
+function createEntryParser (options = defaultOptions) {
   const { GLYPH_SIZE, GLYPHS_PER_ENTRY } = options
 
   const ENTRY_LINE_LENGTH = GLYPH_SIZE * GLYPHS_PER_ENTRY
 
-  const getGlyphAtPosition = position => {
+  const getGlyphAtPosition = (entry, position) => {
     const line1 = entry.slice(0                    , ENTRY_LINE_LENGTH)
     const line2 = entry.slice(ENTRY_LINE_LENGTH    , ENTRY_LINE_LENGTH * 2)
     const line3 = entry.slice(ENTRY_LINE_LENGTH * 2, ENTRY_LINE_LENGTH * 3)
@@ -56,9 +56,11 @@ function createEntryParser (entry, options = defaultOptions) {
     parseDigitGlyph
   )
 
-  const parse = () => R
+  const parse = (entry) => R
     .range(0, GLYPHS_PER_ENTRY)
-    .map(parseGlyphAtPosition)
+    .map(
+      R.partial(parseGlyphAtPosition, [entry])
+    )
 
   return {
     parse,
