@@ -23,4 +23,6 @@ const validator = (function createValidator() {
   };
 })();
 
-module.exports = validator;
+module.exports = {
+  validator
+}
