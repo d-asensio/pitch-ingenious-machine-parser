@@ -8,8 +8,8 @@
     "node": "16.5.0"
   },
   "scripts": {
-    "test": "jest --resetMocks --verbose",
-    "test:watch": "jest --resetMocks --watch",
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "demo:suggested-test-cases": "node ./src/index ./data/suggested-test-cases-input.txt ./data/suggested-test-cases-output.txt"
@@ -28,5 +28,8 @@
     "env": [
       "jest"
     ]
+  },
+  "jest": {
+    "resetMocks": true
   }
 }
