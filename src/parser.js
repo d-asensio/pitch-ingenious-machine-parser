@@ -1,36 +1,11 @@
 const R = require('ramda')
-
-const defaultOptions = require('./defaultOptions')
-
 const {
-  DIGIT_ZERO_GLYPH,
-  DIGIT_ONE_GLYPH,
-  DIGIT_TWO_GLYPH,
-  DIGIT_THREE_GLYPH,
-  DIGIT_FOUR_GLYPH,
-  DIGIT_FIVE_GLYPH,
-  DIGIT_SIX_GLYPH,
-  DIGIT_SEVEN_GLYPH,
-  DIGIT_EIGHT_GLYPH,
-  DIGIT_NINE_GLYPH
-} = require('./glyps')
+  GLYPH_TO_DIGIT_MAP,
+  GLYPH_SIZE,
+  GLYPHS_PER_ENTRY
+} = require('./constants')
 
-const GLYPH_TO_DIGIT_MAP = {
-  [DIGIT_ZERO_GLYPH]: 0,
-  [DIGIT_ONE_GLYPH]: 1,
-  [DIGIT_TWO_GLYPH]: 2,
-  [DIGIT_THREE_GLYPH]: 3,
-  [DIGIT_FOUR_GLYPH]: 4,
-  [DIGIT_FIVE_GLYPH]: 5,
-  [DIGIT_SIX_GLYPH]: 6,
-  [DIGIT_SEVEN_GLYPH]: 7,
-  [DIGIT_EIGHT_GLYPH]: 8,
-  [DIGIT_NINE_GLYPH]: 9
-}
-
-function createEntryParser (options = defaultOptions) {
-  const { GLYPH_SIZE, GLYPHS_PER_ENTRY } = options
-
+const parser = (function createEntryParser () {
   const ENTRY_LINE_LENGTH = GLYPH_SIZE * GLYPHS_PER_ENTRY
 
   const getGlyphAtPosition = (entry, position) => {
@@ -65,8 +40,8 @@ function createEntryParser (options = defaultOptions) {
   return {
     parse,
   }
-}
+})()
 
 module.exports = {
-  createEntryParser
+  parser
 }

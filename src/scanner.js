@@ -1,10 +1,10 @@
 const R = require('ramda');
 const { DOCUMENT_ENTRY_SEPARATOR } = require('./constants');
-const { createEntryParser } = require("./parser");
+const { parser: defaultParser } = require("./parser");
 
 function createScanner(dependencies = {}) {
   const {
-    parser = createEntryParser()
+    parser = defaultParser
   } = dependencies;
 
   const sanitizeEntry = R.replace(/\n/g, '');

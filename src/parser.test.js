@@ -1,4 +1,4 @@
-const { createEntryParser } = require('./parser')
+const { parser } = require('./parser')
 
 it.each([
   [
@@ -79,17 +79,14 @@ it.each([
     [1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9]
   ]
 ])('should read an entry containing %s', (_, entry, expectedDigits) => {
-  const { parse } = createEntryParser()
-
-  expect(parse(entry)).toStrictEqual(expectedDigits)
+  expect(parser.parse(entry)).toStrictEqual(expectedDigits)
 })
 
 it('should read entry invalid digits as "null"', () => {
-  const { parse } = createEntryParser()
   const entry =
     '    _  _     _  _  _  _  _ ' +
     '  | _|  ||_||_ |_   ||_||_|' +
     '  ||_  _|  | _||_|  ||_| _|'
 
-  expect(parse(entry)).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
+  expect(parser.parse(entry)).toStrictEqual([1, 2, null, 4, 5, 6, 7, 8, 9])
 })
