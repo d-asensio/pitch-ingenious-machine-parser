@@ -1,2 +1,6 @@
 # Dependencies
 node_modules/
+
+# stryker temp files
+.stryker-tmp
+reports/
