@@ -1,4 +1,4 @@
-const R = require('ramda');
+const R = require('ramda')
 
 const { validator: defaultValidator } = require('./validator')
 
@@ -6,16 +6,16 @@ const {
   VALID_NUMBER_STATUS,
   INVALID_NUMBER_STATUS,
   ILLEGIBLE_NUMBER_STATUS
-} = require('./constants');
+} = require('./constants')
 
-function createStatusResolver(dependencies = {}) {
+function createStatusResolver (dependencies = {}) {
   const {
     validator = defaultValidator
-  } = dependencies;
+  } = dependencies
 
-  const isIllegibleAccountNumber = R.includes(null);
+  const isIllegibleAccountNumber = R.includes(null)
 
-  const isInvalidAccountNumber = R.complement(validator.validate);
+  const isInvalidAccountNumber = R.complement(validator.validate)
 
   const resolveIllegibleStatus = R.ifElse(
     isIllegibleAccountNumber,
@@ -32,7 +32,7 @@ function createStatusResolver(dependencies = {}) {
   const resolve = R.either(
     R.either(
       resolveIllegibleStatus,
-      resolveInvalidStatus,
+      resolveInvalidStatus
     ),
     R.always(VALID_NUMBER_STATUS)
   )

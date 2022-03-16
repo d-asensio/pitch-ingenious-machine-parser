@@ -9,7 +9,7 @@ function createCLI (dependencies = {}) {
 
   const run = ([,, inputFilePath, outputFilePath]) => {
     const document = fs.readFileSync(inputFilePath).toString()
-    
+
     const parsedAccountNumbers = ingeniousMachine.read(document)
 
     fs.writeFileSync(outputFilePath, parsedAccountNumbers.join('\n'))

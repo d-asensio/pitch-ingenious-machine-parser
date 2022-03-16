@@ -1,4 +1,4 @@
-const { when } = require("jest-when")
+const { when } = require('jest-when')
 
 const { createCLI } = require('./cli')
 
@@ -36,6 +36,6 @@ it('should read the given input file, provide its content to the machine and wri
     .mockReturnValue(machineOutput)
 
   cli.run(['', '', inputFilePath, outputFilePath])
-  
+
   expect(fs.writeFileSync).toHaveBeenCalledWith(outputFilePath, outputFileContent)
 })

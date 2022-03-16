@@ -1,20 +1,20 @@
-const R = require('ramda');
+const R = require('ramda')
 
 const {
   VALID_NUMBER_STATUS,
   INVALID_NUMBER_STATUS,
   ILLEGIBLE_NUMBER_STATUS
-} = require('./constants');
+} = require('./constants')
 
 const INVALID_DIGIT_PLACEHOLDER = '?'
 
 const STATUS_TO_STRING_MAP = {
   [VALID_NUMBER_STATUS]: '',
   [INVALID_NUMBER_STATUS]: ' ERR',
-  [ILLEGIBLE_NUMBER_STATUS]: ' ILL',
+  [ILLEGIBLE_NUMBER_STATUS]: ' ILL'
 }
 
-const serializer = (function createSerializer() {
+const serializer = (function createSerializer () {
   const serializeOneDigit = R.when(
     R.isNil(),
     R.always(INVALID_DIGIT_PLACEHOLDER)

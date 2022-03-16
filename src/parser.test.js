@@ -76,7 +76,7 @@ it.each([
     '    _  _     _  _  _  _  _ ' +
     '  | _| _||_||_ |_   ||_||_|' +
     '  ||_  _|  | _||_|  ||_| _|',
-    [1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9]
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]
   ]
 ])('should read an entry containing %s', (_, entry, expectedDigits) => {
   expect(parser.parse(entry)).toStrictEqual(expectedDigits)

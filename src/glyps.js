@@ -1,53 +1,52 @@
-const DIGIT_ZERO_GLYPH = 
+const DIGIT_ZERO_GLYPH =
   ' _ ' +
   '| |' +
   '|_|'
 
-const DIGIT_ONE_GLYPH = 
+const DIGIT_ONE_GLYPH =
   '   ' +
   '  |' +
   '  |'
 
-const DIGIT_TWO_GLYPH = 
+const DIGIT_TWO_GLYPH =
   ' _ ' +
   ' _|' +
   '|_ '
 
-const DIGIT_THREE_GLYPH = 
+const DIGIT_THREE_GLYPH =
   ' _ ' +
   ' _|' +
   ' _|'
 
-const DIGIT_FOUR_GLYPH = 
+const DIGIT_FOUR_GLYPH =
   '   ' +
   '|_|' +
   '  |'
 
-const DIGIT_FIVE_GLYPH = 
+const DIGIT_FIVE_GLYPH =
   ' _ ' +
   '|_ ' +
   ' _|'
 
-const DIGIT_SIX_GLYPH = 
+const DIGIT_SIX_GLYPH =
   ' _ ' +
   '|_ ' +
   '|_|'
 
-const DIGIT_SEVEN_GLYPH = 
+const DIGIT_SEVEN_GLYPH =
   ' _ ' +
   '  |' +
   '  |'
 
-const DIGIT_EIGHT_GLYPH = 
+const DIGIT_EIGHT_GLYPH =
   ' _ ' +
   '|_|' +
   '|_|'
 
-const DIGIT_NINE_GLYPH = 
+const DIGIT_NINE_GLYPH =
   ' _ ' +
   '|_|' +
   ' _|'
-
 
 module.exports = {
   DIGIT_ZERO_GLYPH,

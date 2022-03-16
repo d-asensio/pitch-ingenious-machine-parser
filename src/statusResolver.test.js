@@ -1,11 +1,11 @@
-const { when } = require('jest-when');
+const { when } = require('jest-when')
 const {
   VALID_NUMBER_STATUS,
   INVALID_NUMBER_STATUS,
   ILLEGIBLE_NUMBER_STATUS
 } = require('./constants')
 
-const { createStatusResolver } = require("./statusResolver")
+const { createStatusResolver } = require('./statusResolver')
 
 const validator = {
   validate: jest.fn()
