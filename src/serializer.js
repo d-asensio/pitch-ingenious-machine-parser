@@ -3,10 +3,10 @@ const R = require('ramda');
 const INVALID_DIGIT_PLACEHOLDER = '?'
 
 const serializer = (function createSerializer() {
-  const serializeDigit = digit =>
-    digit !== null
-      ? digit
-      : INVALID_DIGIT_PLACEHOLDER
+  const serializeDigit = R.when(
+    R.isNil(),
+    R.always(INVALID_DIGIT_PLACEHOLDER)
+  )
 
   const serialize = R.pipe(
     R.map(serializeDigit),
