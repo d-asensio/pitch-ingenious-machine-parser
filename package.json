@@ -10,13 +10,21 @@
   "scripts": {
     "test": "jest --verbose",
     "test:watch": "jest --watch",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
     "demo:suggested-test-cases": "node ./src/index ./data/suggested-test-cases-input.txt ./data/suggested-test-cases-output.txt"
   },
   "devDependencies": {
     "jest": "^27.5.1",
-    "jest-when": "^3.5.1"
+    "jest-when": "^3.5.1",
+    "standard": "^16.0.4"
   },
   "dependencies": {
     "ramda": "^0.28.0"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
   }
 }
