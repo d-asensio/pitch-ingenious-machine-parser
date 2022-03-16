@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "jest --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "demo:suggested-test-cases": "node ./src/index ./data/suggested-test-cases-input.txt ./data/suggested-test-cases-output.txt"
   },
   "devDependencies": {
     "jest": "^27.5.1",
