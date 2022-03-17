@@ -11,6 +11,7 @@
   "scripts": {
     "test": "jest --verbose",
     "test:watch": "jest --watch",
+    "test-mutation": "npx stryker run",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "demo:suggested-test-cases": "node ./src/index ./data/suggested-test-cases-input.txt ./data/suggested-test-cases-output.txt",

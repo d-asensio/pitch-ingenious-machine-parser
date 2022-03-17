@@ -159,6 +159,15 @@ As I mentioned before, I used [Striker Mutator](https://stryker-mutator.io/) to 
 
 Stryker is very easy to set up (just a command) and in my experience, it helps to detect flaws and uncovered paths.
 
+If you are curious, you can generate a Stryker report by running:
+
+```bash
+yarn test-mutation
+```
+> **Note:** It requires npx
+
+You will find the results under the `reports` directory.
+
 ## Final Notes
 
 I enjoyed this challenge so much and regardless of the result I hope you also enjoyed the review.
