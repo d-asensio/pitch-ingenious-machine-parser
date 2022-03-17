@@ -170,4 +170,4 @@ You will find the results under the `reports` directory.
 
 ## Final Notes
 
-I enjoyed this challenge so much and regardless of the result I hope you also enjoyed the review.
+Thank you for reaching to this point. I enjoyed this challenge so much and regardless of the result I hope you also enjoyed the review.
