@@ -149,7 +149,7 @@ The `machineDocumentReader` module is covered by an integration test since it is
 
 I did some manual tests using the suggested test cases and also created other cases. This could also be automated with E2E tests that check the output file contents, but this is a bit more expensive to implement, so I avoided automating that part.
 
-## Mutation testing
+### Mutation testing
 
 As I mentioned before, I used [Striker Mutator](https://stryker-mutator.io/) to do mutation testing and check that my tests were covering the majority of cases. It helped me to spot a bug in my jest configuration (I forgot to set `resetMocks` to `true` and a mock was leaking from one test to another).
 
