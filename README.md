@@ -6,7 +6,9 @@ Thank you for taking the time to read and review!
 
 ## Before starting
 
-I decided to use JavaScript to complete this challenge because is a language that I am proficient with and it is also widely known. Additionally, I used a functional programming style to get as close as possible to Clojure, so it is more familiar to you.
+I decided to use JavaScript to complete this challenge because is a language that I am proficient with and it is also widely known.
+
+Additionally, I used a functional programming style to get as close as possible to Clojure, so it is more familiar to you.
 
 ## Set up the project
 
@@ -64,6 +66,29 @@ yarn demo:long-input-test-cases-input
 After running the command, you'll find the generated output files under the `data` directory.
 
 ## Ubiquitous language
+
+Before going forward into the nitty-gritty, I would like to set a ubiquitous language to define some of the concepts that are relative to the domain of this problem. You will find this language used in this document and also in constants and function names across the code.
+
+I hope that setting this foundation will make it easier for you to understand my intentions and the purpose of the code, here we go:
+
+- **Document**: The content of the file produced by the ingenious machine. A document can contain multiple **entries**.
+- **Entry**: A string of pipes and spaces (`|`, `_`, ` `) arranged in 3 lines of 27 characters each, representing an **account number**. An entry contains exactly 9 **glyphs**.
+    - **Example**:
+        ```
+          _  _     _  _  _  _  _
+        | _| _||_||_ |_   ||_||_|
+        ||_  _|  | _||_|  ||_| _|
+        ```
+- **Glyph**:  A string of pipes and spaces arranged in 3 lines of 3 characters each, representing a digit from 0 to 9.
+    - **Example**:
+        ```
+         _ 
+        |_ 
+         _|
+        ```
+- **Account Number**: An array of length 9 containing integers or `null`'s. An account number is parsed from its **entry** representation.
+    - **Example**: `[1, 2, 3, 4, null, 6, 7, 8, 9]`
+- **Status code**: A string that indicates the state of an **account number**. It can be either `ILL` for an **account number** containing illegible digits or `ERR` for one that does not comply with the checksum definition.
 
 ## Architecture overview
 
