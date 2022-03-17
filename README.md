@@ -52,6 +52,7 @@ To easily run the code, I prepared a couple of `yarn` scripts:
 
 - `demo:suggested-test-cases`: Runs the code against the suggested test case, the one that is provided in the challenge statement.
 - `demo:long-input-test-cases-input`: Uses a test case with +500 entries.
+- `demo:empty-test-case-input`: Empty input
 
 You can run the scripts by executing the following commands from the root directory of this project:
 
@@ -61,6 +62,9 @@ yarn demo:suggested-test-cases
 
 # +500 entries test case
 yarn demo:long-input-test-cases-input
+
+# Empty input
+yarn demo:empty-test-case-input
 ```
 
 After running the command, you'll find the generated output files under the `data` directory.

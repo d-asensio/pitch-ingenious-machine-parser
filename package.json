@@ -14,7 +14,8 @@
     "lint": "standard",
     "lint:fix": "standard --fix",
     "demo:suggested-test-cases": "node ./src/index ./data/suggested-test-cases-input.txt ./data/suggested-test-cases-output.txt",
-    "demo:long-input-test-cases-input": "node ./src/index ./data/long-input-test-cases-input.txt ./data/long-input-test-cases-output.txt"
+    "demo:long-input-test-cases-input": "node ./src/index ./data/long-input-test-cases-input.txt ./data/long-input-test-cases-output.txt",
+    "demo:empty-test-case-input": "node ./src/index ./data/empty-test-case-input.txt ./data/empty-test-case-output.txt"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^5.6.1",
