@@ -4,6 +4,10 @@ This document attempts to explain the big picture of the code and the architectu
 
 Thank you for taking the time to read and review!
 
+## Before starting
+
+I decided to use JavaScript to complete this challenge because is a language that I am proficient with and it is also widely known. Additionally, I used a functional programming style to get as close as possible to Clojure, so it is more familiar to you.
+
 ## Set up the project
 
 To initialize this project you need the following tools:
