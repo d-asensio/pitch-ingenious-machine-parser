@@ -1,4 +1,4 @@
-# Pitch Coding Challenge - Ingenious Machine
+# Pitch Coding Challenge - Ingenious Machine Parser
 
 This document attempts to explain the big picture of the code and the architecture it follows and also gives insight into the intentions behind it.
 
@@ -92,16 +92,16 @@ I hope that setting this foundation will make it easier for you to understand my
 
 ## Architecture overview
 
-I architected the solution to this problem with SOLID principles in mind, especially the **Single Responsibility Principle**, the **Dependency Inversion Principle** and the **Open/Closed Principle**.
+I architected the solution to this problem with SOLID principles in mind, especially the **Single Responsibility Principle**, the **Dependency Inversion Principle**, and the **Open/Closed Principle**.
 
 While SOLID principles were originally introduced to solve OOP architectural problems, I think that some of them are also valuable in a FP paradigm.
 
-Starting by the **Single Responsibility Principle**, I will describe the responsibility of each part of the code (that I convenintly splitted into different files) in a single phrase: 
+Starting by the **Single Responsibility Principle**, I will describe the responsibility of each part of the code (that I conveniently split into different files) in a single phrase: 
 
 ```bash
  src
  ├── cli.js                   # Manage IO operations
- ├── machineDocumentReader.js # Orchestrate scanning, parsing and serialization
+ ├── machineDocumentReader.js # Orchestrate scanning, parsing, and serialization
  ├── parser.js                # Parse entries into account numbers
  ├── scanner.js               # Split entries from a document
  ├── serializer.js            # Serialize account numbers and status codes into human-readable strings
@@ -113,19 +113,19 @@ Having small parts with very little responsibility makes the code easier to reas
 
 Moving to the **Dependency Inversion Principle**, it is reasonable to highlight that in my solution interfaces are implicit since JavaScript is a dynamically typed language. However, the idea is that the parser, to take an example, will always expose a `parse` function that takes an entry as input and returns the account number that it represents.
 
-This enables to change the parser implementation and ensure that the higher-level modules using it will continue working if continues complying with the aforementioned contract.
+This enables to change the parser implementation and ensure that the higher-level modules using it will continue working (as far as the contract is preserved).
 
-An example of how this is useful would be: Imagine that a new requirement appears indicating that now the ingenious machine can also read IBAN numbers (wich contain letters). With this approach, we woud be able to implement a `ibanParser.parse` function that does the job and inject it to the `scanner` without changing its implementation.
+An example of how this is useful would be: Imagine that a new requirement appears indicating that now the ingenious machine can also read IBANs (which contain letters). With this approach, we would be able to implement an `ibanParser.parse` function that does the job and inject it to the `scanner` without changing its implementation.
 
 ### A note on dependency injection
 
-To achieve dependency injection I used the [revealing module pattern](https://learning.oreilly.com/library/view/learning-javascript-design/9781449334840/ch09s03.html) and injected the dependencies through a factory function. This pattern is also useful to manage visibility and encapsulation, since functions are protected by a closure and only the public ones are exposed.
+To achieve dependency injection I used the [revealing module pattern](https://learning.oreilly.com/library/view/learning-javascript-design/9781449334840/ch09s03.html) and injected the dependencies through a factory function. This pattern is also useful to manage visibility and encapsulation since functions are protected by the closure and only the public ones are exposed.
 
-> **Clarification**: While it is possible to use the revealing module pattern to do OOP, I did not expose any setter nor getter so the modules does not contain any mutable state.
+> **Clarification**: While it is possible to use the revealing module pattern to do OOP, I did not expose any setter nor getter so the modules do not contain any mutable state.
 
 In this point of the explanation, is easier to expose how the **Open/Closed Principle** was introduced.
 
-Since we have different modules with a single responsibility and high-level modules do not depend on low-level modules. It is easy to rewrite any module and inject it to change the behaviour of the code without having to modify anything else.
+Since we have different modules with a single responsibility and high-level modules do not depend on low-level modules. It is easy to rewrite any module and inject it to change the behavior of the code without having to modify anything else.
 
 In this regard, the code is *open for extension but closed for modification*.
 
@@ -134,6 +134,26 @@ In this regard, the code is *open for extension but closed for modification*.
 ![Diagram explaining dependencies between different modules](/assets/modules_dependencies_diagram.png)
 
 ## Testing strategy
+
+To ensure that the solution works, I used a mix between unit, integration, and manual testing. And I used TDD as an exploration method to increasingly find a robust design.
+
+### Unit tests
+
+Almost all the modules are covered by unit tests because they have very specific responsibilities and unit tests are small and helpful to cover most corner cases.
+
+### Integration tests
+
+The `machineDocumentReader` module is covered by an integration test since it is an orchestrator that does not have business logic.
+
+### Manual tests
+
+I did some manual tests using the suggested test cases and also created other cases. This could also be automated with E2E tests that check the output file contents, but this is a bit more expensive to implement, so I avoided automating that part.
+
+## Mutation testing
+
+As I mentioned before, I used [Striker Mutator](https://stryker-mutator.io/) to do mutation testing and check that my tests were covering the majority of cases. It helped me to spot a bug in my jest configuration (I forgot to set `resetMocks` to `true` and a mock was leaking from one test to another).
+
+Stryker is very easy to set up (just a command) and in my experience, it helps to detect flaws and uncovered paths.
 
 ## Potential improvements
 
