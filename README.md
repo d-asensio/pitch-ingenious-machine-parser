@@ -4,6 +4,27 @@ This document attempts to explain the big picture of the code and the architectu
 
 Thank you for taking the time to read and review!
 
+## Table of Contents
+
+<!-- toc -->
+
+- [Before starting](#before-starting)
+- [Set up the project](#set-up-the-project)
+- [Dependencies](#dependencies)
+- [Run the code](#run-the-code)
+- [Ubiquitous language](#ubiquitous-language)
+- [Architecture overview](#architecture-overview)
+  * [A note on dependency injection](#a-note-on-dependency-injection)
+  * [Diagram explaining dependencies between different modules](#diagram-explaining-dependencies-between-different-modules)
+- [Testing strategy](#testing-strategy)
+  * [Unit tests](#unit-tests)
+  * [Integration tests](#integration-tests)
+  * [Manual tests](#manual-tests)
+  * [Mutation testing](#mutation-testing)
+- [Final Notes](#final-notes)
+
+<!-- tocstop -->
+
 ## Before starting
 
 I decided to use JavaScript to complete this challenge because is a language that I am proficient with and it is also widely known.

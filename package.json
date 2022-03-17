@@ -14,6 +14,7 @@
     "test-mutation": "npx stryker run",
     "lint": "standard",
     "lint:fix": "standard --fix",
+    "markdown:generate-toc": "markdown-toc -i ./README.md",
     "demo:suggested-test-cases": "node ./src/index ./data/suggested-test-cases-input.txt ./data/suggested-test-cases-output.txt",
     "demo:long-input-test-cases-input": "node ./src/index ./data/long-input-test-cases-input.txt ./data/long-input-test-cases-output.txt",
     "demo:empty-test-case-input": "node ./src/index ./data/empty-test-case-input.txt ./data/empty-test-case-output.txt"
@@ -23,6 +24,7 @@
     "@stryker-mutator/jest-runner": "^5.6.1",
     "jest": "^27.5.1",
     "jest-when": "^3.5.1",
+    "markdown-toc": "^1.2.0",
     "standard": "^16.0.4"
   },
   "dependencies": {
