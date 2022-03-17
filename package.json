@@ -5,7 +5,8 @@
   "author": "Anonimous Pitch Candidate",
   "license": "MIT",
   "volta": {
-    "node": "16.5.0"
+    "node": "16.5.0",
+    "yarn": "1.22.17"
   },
   "scripts": {
     "test": "jest --verbose",
