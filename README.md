@@ -42,7 +42,24 @@ I also used some development dependencies, mainly for testing and linting:
 
 ## Run the code
 
+To easily run the code, I prepared a couple of `yarn` scripts:
 
+- `demo:suggested-test-cases`: Runs the code against the suggested test case, the one that is provided in the challenge statement.
+- `demo:long-input-test-cases-input`: Uses a test case with +500 entries.
+
+You can run the scripts by executing the following commands from the root directory of this project:
+
+```bash
+# Suggested test case
+yarn demo:suggested-test-cases
+
+# +500 entries test case
+yarn demo:long-input-test-cases-input
+```
+
+After running the command, you'll find the generated output files under the `data` directory.
+
+## Ubiquitous language
 
 ## Architecture overview
 
