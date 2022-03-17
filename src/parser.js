@@ -22,9 +22,10 @@ const parser = (function createEntryParser () {
     )
   }
 
-  const parseDigitGlyph = glyph => {
-    return GLYPH_TO_DIGIT_MAP[glyph] ?? null
-  }
+  const parseDigitGlyph = R.partialRight(
+    R.propOr(null),
+    [GLYPH_TO_DIGIT_MAP]
+  )
 
   const parseGlyphAtPosition = R.pipe(
     getGlyphAtPosition,
