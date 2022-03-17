@@ -7,11 +7,11 @@ const fs = {
   writeFileSync: jest.fn()
 }
 
-const ingeniousMachine = {
+const machineDocumentReader = {
   read: jest.fn()
 }
 
-const cli = createCLI({ fs, ingeniousMachine })
+const cli = createCLI({ fs, machineDocumentReader })
 
 it('should read the given input file, provide its content to the machine and write its output to the given output file', () => {
   const inputFilePath = '/a/path/to/input.txt'
@@ -31,7 +31,7 @@ it('should read the given input file, provide its content to the machine and wri
     .mockReturnValue(
       Buffer.from(inputFileContent)
     )
-  when(ingeniousMachine.read)
+  when(machineDocumentReader.read)
     .calledWith(inputFileContent)
     .mockReturnValue(machineOutput)
 

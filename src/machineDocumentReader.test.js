@@ -1,7 +1,7 @@
 const { DOCUMENT_ENTRY_SEPARATOR } = require('./constants')
-const { createIngeniousMachine } = require('./ingeniousMachine')
+const { createMachineDocumentReader } = require('./machineDocumentReader')
 
-const ingeniousMachine = createIngeniousMachine()
+const machineDocumentReader = createMachineDocumentReader()
 
 describe('integration tests', () => {
   it('should scan, parse and serialize a document containing a valid, illegible and invalid account numbers', () => {
@@ -19,7 +19,7 @@ describe('integration tests', () => {
       '|_||_||_||_||_||_||_||_|  |' +
       DOCUMENT_ENTRY_SEPARATOR
 
-    const result = ingeniousMachine.read(document)
+    const result = machineDocumentReader.read(document)
 
     expect(result).toStrictEqual([
       '123456789',

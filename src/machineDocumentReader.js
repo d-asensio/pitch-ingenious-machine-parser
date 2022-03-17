@@ -4,7 +4,7 @@ const { createScanner } = require('./scanner')
 const { createStatusResolver } = require('./statusResolver')
 const { serializer: defaultSerializer } = require('./serializer')
 
-function createIngeniousMachine (dependencies = {}) {
+function createMachineDocumentReader (dependencies = {}) {
   const {
     scanner = createScanner(),
     statusResolver = createStatusResolver(),
@@ -30,5 +30,5 @@ function createIngeniousMachine (dependencies = {}) {
 }
 
 module.exports = {
-  createIngeniousMachine
+  createMachineDocumentReader
 }
