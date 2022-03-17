@@ -155,6 +155,6 @@ As I mentioned before, I used [Striker Mutator](https://stryker-mutator.io/) to 
 
 Stryker is very easy to set up (just a command) and in my experience, it helps to detect flaws and uncovered paths.
 
-## Potential improvements
-
 ## Final Notes
+
+I enjoyed this challenge so much and regardless of the result I hope you also enjoyed the review.
